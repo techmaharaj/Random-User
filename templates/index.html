@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="center-align">Random User Generator</h1>
+        <button id="fetchButton" class="btn waves-effect waves-light mt-4">Fetch Random User</button>
+        <p class="description">This uses randomuser.me API to fetch details of a random user and generate a user card</p>
+        <div class="content-box">
+            <div class="row">
+                <div class="col s12 m12 d-flex justify-content-center align-items-center">
+                    <div class="card placeholder-card">No User Fetched</div>
+                    <div class="card profile-card">
+                        <div class="card-body">
+                            <img id="userImage" src="" alt="User Picture">
+                            <h5 class="card-title" id="userName"></h5>
+                            <p class="card-text" id="userEmail"></p>
+                            <p class="card-text" id="userLocation"></p>
+                            <p class="card-text" id="userPhone"></p>
+                            <p class="card-text" id="userCell"></p>
+                            <p class="card-text" id="userDOB"></p>
+                            <p class="card-text" id="userNationality"></p>
+                        </div>
+                    </div>
+                    <div class="preloader-wrapper big active" id="loadingSpinner" style="display: none;">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
