@@ -86,7 +86,7 @@ jobs:
         working-directory: infrastructure/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCES_KEY: ${{ secrets.AWS_SECRET_ACCES_KEY }} # Error: Typo in secret name
+          AWS_SECRET_ACCES_KEY: ${{ secrets.AWS_SECRET_ACCES_KEY }}
 
   docker:
     runs-on: ubuntu-latest
@@ -104,13 +104,13 @@ jobs:
       - name: Build and tag Docker image
         run: |
           IMAGE_TAG=${{ github.sha }}
-          docker build -t ${{ secrets.ECR_REGISTRY }}/my-app:latest .  # Error: Tag mismatch
+          docker build -t ${{ secrets.ECR_REGISTRY }}/my-app:latest .
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
       - name: Push Docker image to AWS ECR
         run: |
           IMAGE_TAG=${{ env.IMAGE_TAG }}
-          docker push ${{ secrets.ECR_REGISTRY }}/my-app:$IMAGE_TAG  # Error: Incorrect image tag
+          docker push ${{ secrets.ECR_REGISTRY }}/my-app:$IMAGE_TAG
 
   deploy:
     runs-on: ubuntu-latest
@@ -130,7 +130,7 @@ jobs:
           # Your deployment script here
 
       - name: Manual Approval for Production
-        if: github.ref == 'refs/head/main'  # Error: Typo in condition (should be refs/heads/main)
+        if: github.ref == 'refs/head/main'
         uses: hmarr/auto-approve-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -140,4 +140,3 @@ jobs:
           run: |
           echo "Deploying to production environment"
           # Your deployment script here
-        # Error: Indentation problem, step will be skipped
