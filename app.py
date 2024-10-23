@@ -11,7 +11,16 @@ def index():
 def fetch_user():
     response = requests.get('https://randomuser.me/api/')
     data = response.json()
+    
+    # Fetching username and password
+    user_info = data['results'][0]['login']
+    username = user_info['username']
+    password = user_info['password']
+    
+    # Storing username and password in plaintext (not recommended)
+    print(f"Username: {username}, Password: {password}")
+    
     return jsonify(data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
